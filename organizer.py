@@ -2,9 +2,7 @@ import os
 import shutil
 import sys
 
-# ==============================
 # CONFIGURATION
-# ==============================
 FILE_CATEGORIES = {
     "Images": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp"],
     "Documents": [".pdf", ".docx", ".txt", ".xlsx", ".pptx", ".csv"],
@@ -16,9 +14,7 @@ LOG_FILE = "organizer.log"
 DRY_RUN = False  # Set True if you want to preview actions first
 
 
-# ==============================
 # UTILITY FUNCTIONS
-# ==============================
 def log_action(message):
     """Logs actions to a file."""
     with open(LOG_FILE, "a") as log:
@@ -46,9 +42,7 @@ def get_category(file_ext):
     return "Others"
 
 
-# ==============================
 # CORE FUNCTION
-# ==============================
 def organize_files(folder_path):
     """Organizes files into categorized folders."""
 
@@ -96,9 +90,7 @@ def organize_files(folder_path):
             print(f"Failed to move {filename}: {e}")
             log_action(f"ERROR moving {filename}: {e}")
 
-    # ==============================
     # SUMMARY
-    # ==============================
     print("\n--- SUMMARY ---")
     for cat, count in summary.items():
         print(f"{cat}: {count} files")
@@ -107,9 +99,7 @@ def organize_files(folder_path):
     print("--- Done ---")
 
 
-# ==============================
 # MAIN ENTRY
-# ==============================
 def main():
     global DRY_RUN
 
