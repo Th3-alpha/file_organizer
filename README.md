@@ -63,9 +63,11 @@ Dry-run mode (preview changes without moving files):
 python organizer.py "C:\Users\YourName\Downloads" --dry-run
 ```
 
-Example Output
+## Example Output
+
+
 ========================================
-      SMART FILE ORGANIZER
+         SMART FILE ORGANIZER
 ========================================
 
 Directory : C:\Users\YourName\Downloads
@@ -76,7 +78,7 @@ Mode      : Normal
 [3/3] ✓ song.mp3 → Audio/song.mp3
 
 ========================================
-               SUMMARY
+                SUMMARY
 ========================================
 
 Audio       : 1
@@ -90,6 +92,7 @@ Log File        : organizer.log
 
 Done!
 ========================================
+
 ---
 
 ## Technologies Used
