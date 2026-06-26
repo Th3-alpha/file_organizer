@@ -1,10 +1,12 @@
-import os
 import shutil
-import sys
 import argparse
 import logging
+import time
 from pathlib import Path
+
 from config import FILE_CATEGORIES
+
+SEPARATOR = "=" * 40
 
 LOG_FILE = "organizer.log"
 
@@ -46,22 +48,34 @@ def organize_files(folder_path, dry_run=False):
     base_dir = Path(folder_path)
 
     if not base_dir.is_dir():
-        print(f"Error: '{folder_path}' is not a valid directory.")
+        print(f"❌ '{folder_path}' is not a valid directory.")
         return
 
     files_moved = 0
     summary = {}
 
-    print(f"\n--- Organizing: {base_dir.absolute()} ---\n")
-    if dry_run:
-        print("!!! DRY RUN MODE ENABLED - No files will be moved !!!\n")
+    print(SEPARATOR)
+    print("SMART FILE ORGANIZER".center(len(SEPARATOR)))
+    print(SEPARATOR)
+
+    print(f"\nDirectory : {base_dir.resolve()}")
+    print(f"Mode      : {'Dry Run' if dry_run else 'Normal'}")
+    print()
 
     # Iterate through the directory
-    for item in base_dir.iterdir():
-        # Skip directories and the log file
-        if item.is_dir() or item.name == LOG_FILE:
-            continue
+    items = [
+        item for item in base_dir.iterdir()
+        if item.is_file() and item.name != LOG_FILE
+    ]
+    
+    if not items:
+        print("\nNo files found to organize in the selected directory.")
+        return
 
+    # Start timer
+    start_time = time.perf_counter()
+
+    for item in items:      
         file_ext = item.suffix.lower()
         category = get_category(file_ext)
 
@@ -73,32 +87,46 @@ def organize_files(folder_path, dry_run=False):
 
         try:
             if dry_run:
-                print(f"[DRY RUN] {item.name} -> {category}/{unique_name}")
+                print(f"[DRY RUN] {item.name} → {category}/{unique_name}")
             else:
                 # Create category folder if it doesn't exist
                 target_folder.mkdir(parents=True, exist_ok=True)
                 
                 shutil.move(str(item), str(destination_path))
                 
-                msg = f"Moved: {item.name} -> {category}/{unique_name}"
-                print(msg)
+                msg = f"✓ {item.name} → {category}/{unique_name}"
+                print(f"[{files_moved + 1}/{len(items)}] {msg}")
                 logging.info(msg)
 
             files_moved += 1
             summary[category] = summary.get(category, 0) + 1
 
         except Exception as e:
-            err_msg = f"Failed to move {item.name}: {e}"
+            err_msg = f"✗ Failed to move '{item.name}': {e}"
             print(err_msg)
             logging.error(err_msg)
 
-    # SUMMARY
-    print("\n--- SUMMARY ---")
-    for cat, count in summary.items():
-        print(f"{cat}: {count} files")
+    # Stop timer
+    elapsed_time = time.perf_counter() - start_time
 
-    print(f"\nTotal files processed: {files_moved}")
-    print("--- Done ---")
+    # SUMMARY
+    print("\n" + SEPARATOR)
+    print("SUMMARY".center(len(SEPARATOR)))
+    print(SEPARATOR)
+
+    if summary:
+        for category in sorted(summary):
+            print(f"{category:<12}: {summary[category]}")
+    else:
+        print("No files were organized.")
+
+    print("-" * len(SEPARATOR))
+    print(f"{'Files Processed':<15}: {files_moved}")
+    print(f"{'Time Taken':<15}: {elapsed_time:.2f} seconds")
+    print(f"{'Log File':<15}: {LOG_FILE}")
+
+    print("\n✔ Organization complete!")
+    print(SEPARATOR)
 
 
 # MAIN ENTRY
