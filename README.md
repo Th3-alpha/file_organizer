@@ -1,27 +1,33 @@
 # Smart File Organizer (Python)
 
-A Python automation tool that organizes files in a folder into categorized directories based on file type.
+A professional command-line Python application that automatically organizes files into categorized folders based on their file extensions.
 
-## Overview
-This project helps automate the process of cleaning up messy folders by sorting files into categories like Images, Documents, Videos, Audio, and Others.
-
-It also includes safety and usability features such as duplicate file handling, dry-run mode, and logging.
+Built with Python and pathlib, this project demonstrates file handling, command-line interfaces (CLI), logging, and clean project structure.
 
 ---
 
 ## Features
-- Automatic file categorization (Images, Documents, Videos, Audio, Others)
-- Duplicate file handling (renames files to avoid overwriting)
-- Command-line interface (CLI support)
-- Dry-run mode for safe preview
-- Activity logging
-
+- Automatically categorizes files into:
+  - Images
+  - Documents
+  - Videos
+  - Audio
+  Others
+- Prevents duplicate file overwrites by automatically renaming files.
+- Command-line interface with argument parsing.
+- Dry-run mode to preview changes without moving files.
+- Progress indicator while organizing files.
+- Execution time summary.
+- Activity logging to organizer.log.
+- Handles empty directories and invalid folder paths gracefully.
+  
 ---
 
 ## Project Structure
 file_organizer/
 │
 ├── organizer.py
+├── config.py
 ├── README.md
 └── organizer.log (generated after running)
 
@@ -37,10 +43,13 @@ Clone the repository:
 git clone https://github.com/Th3-alpha/file-organizer.git
 cd file-organizer
 ```
+
+No external libraries are required.
+
 ---
 
 ## Usage
-Run the script:
+Organize a folder:
 ```bash
 python organizer.py <folder_path>
 ```
@@ -49,38 +58,58 @@ Example:
 ```bash
 python organizer.py "C:\Users\YourName\Downloads"
 ```
-Dry-run mode (preview only):
+Dry-run mode (preview changes without moving files):
 ```bash
 python organizer.py "C:\Users\YourName\Downloads" --dry-run
 ```
 
 Example Output
-Moved: image.jpg -> Images/image.jpg
-Moved: doc.pdf -> Documents/doc.pdf
+========================================
+      SMART FILE ORGANIZER
+========================================
 
---- SUMMARY ---
+Directory : C:\Users\YourName\Downloads
+Mode      : Normal
 
-Images: 1 files
+[1/3] ✓ image.jpg → Images/image.jpg
+[2/3] ✓ report.pdf → Documents/report.pdf
+[3/3] ✓ song.mp3 → Audio/song.mp3
 
-Documents: 1 files
+========================================
+               SUMMARY
+========================================
 
-Total files processed: 2
+Audio       : 1
+Documents   : 1
+Images      : 1
 
+----------------------------------------
+Files Processed : 3
+Time Taken      : 0.08 seconds
+Log File        : organizer.log
+
+Done!
+========================================
 ---
 
 ## Technologies Used
-- Python
-- os module (file system operations)
-- shutil module (file movement)
+- Python 3
+- pathlib
+- shutil
+- argparse
+- logging
+- time
 
 ---
 
 ## Future Improvements
 
-- GUI version (Tkinter)
+- Recursive folder organization (--recursive)
+- Undo last organization
+- Custom file categories
+- GUI version (Tkinter or CustomTkinter)
 - Drag-and-drop support
-- Undo feature for file organization
-- Convert to executable (.exe)
+- Executable (.exe) release
 
 ---
 
