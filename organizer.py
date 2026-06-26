@@ -4,14 +4,7 @@ import sys
 import argparse
 import logging
 from pathlib import Path
-
-# CONFIGURATION
-FILE_CATEGORIES = {
-    "Images": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp"],
-    "Documents": [".pdf", ".docx", ".txt", ".xlsx", ".pptx", ".csv"],
-    "Videos": [".mp4", ".mkv", ".mov", ".avi"],
-    "Audio": [".mp3", ".wav", ".aac", ".flac"],
-}
+from config import FILE_CATEGORIES
 
 LOG_FILE = "organizer.log"
 
