@@ -82,6 +82,10 @@ Total files processed: 2
 - Undo feature for file organization
 - Convert to executable (.exe)
 
+---
 
-👤 Author
+## Author
+
 Abdullah Ameen-Ikoyi
+
+GitHub:https://github.com/Th3-alpha
