@@ -4,6 +4,12 @@ A professional command-line Python application that automatically organizes file
 
 Built with Python and pathlib, this project demonstrates file handling, command-line interfaces (CLI), logging, and clean project structure.
 
+![Python](https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python&logoColor=white)
+
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
+![Version](https://img.shields.io/badge/Version-v1.1.0-blueviolet?style=for-the-badge)
+
 ---
 
 ## Features
