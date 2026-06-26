@@ -67,14 +67,16 @@ python organizer.py "C:\Users\YourName\Downloads" --dry-run
 
 
 ========================================
-         SMART FILE ORGANIZER
+        SMART FILE ORGANIZER
 ========================================
 
 Directory : C:\Users\YourName\Downloads
 Mode      : Normal
 
 [1/3] ✓ image.jpg → Images/image.jpg
+
 [2/3] ✓ report.pdf → Documents/report.pdf
+
 [3/3] ✓ song.mp3 → Audio/song.mp3
 
 ========================================
@@ -82,12 +84,16 @@ Mode      : Normal
 ========================================
 
 Audio       : 1
+
 Documents   : 1
+
 Images      : 1
 
 ----------------------------------------
 Files Processed : 3
+
 Time Taken      : 0.08 seconds
+
 Log File        : organizer.log
 
 Done!
