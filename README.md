@@ -59,7 +59,9 @@ Moved: image.jpg -> Images/image.jpg
 Moved: doc.pdf -> Documents/doc.pdf
 
 --- SUMMARY ---
+
 Images: 1 files
+
 Documents: 1 files
 
 Total files processed: 2
