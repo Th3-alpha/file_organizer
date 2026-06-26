@@ -65,7 +65,7 @@ python organizer.py "C:\Users\YourName\Downloads" --dry-run
 
 ## Example Output
 
-
+```text
 ========================================
         SMART FILE ORGANIZER
 ========================================
@@ -98,6 +98,7 @@ Log File        : organizer.log
 
 Done!
 ========================================
+```
 
 ---
 
